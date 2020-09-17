@@ -47,7 +47,7 @@ function App() {
           :
           null
       }
-      <h3>Your Name</h3>
+      <h2>Your Name</h2>
       <input value={name} onChange={e => setName(e.target.value)} />
       <h2>Little Game</h2>
       <div>{cd}</div>
