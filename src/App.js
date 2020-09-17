@@ -4,17 +4,19 @@ import './App.css';
 const nEntris = performance && performance.getEntries('navigation')[0]
 
 let cdInterval
+let targetNum = 0
 
 function App() {
   const [loadTime, setLoadTime] = useState('')
-  const [cd, setCd] = useState(0)
+  const [cd, setCd] = useState(null)
   const [cdStatus, setCdStatus] = useState(-1)
   const [record, setRecord] = useState([])
   const [name, setName] = useState('')
   const [red, setRed] = useState(0)
 
   useEffect(() => {
-    setCd(parseInt(Math.random() * 8) + 3)
+    targetNum = parseInt(Math.random() * 1000)
+    setCd(targetNum)
     const checkTime = setInterval(() => {
       if (nEntris.loadEventEnd) {
         setLoadTime(nEntris.loadEventEnd)
@@ -23,30 +25,44 @@ function App() {
     }, 500)
   }, [])
 
+  const initFunc = status => {
+    setCdStatus(status)
+    targetNum = parseInt(Math.random() * 1000)
+    setCd(targetNum)
+    setRed(0)
+  }
+
   useEffect(() => {
     if (cdStatus === -1) {
       return
     }
     if (cdStatus) {
-      const finalCD = cd
       cdInterval = setInterval(() => {
-        setCd(prev => {
-          if (prev > 0) {
-            const color = ((finalCD - prev) / finalCD) * 255
-            setRed(color)
-          } else {
-            setRed(255)
-          }
-          return (prev - 0.01).toFixed(2)
-        })
+        setCd(prev => prev - 1)
       }, 10);
     } else {
-      setRecord(prev => [...prev, { cd, name, red }].sort((a, b) => Math.abs(a.cd) - Math.abs(b.cd)))
-      setRed(0)
-      setCd(parseInt(Math.random() * 8) + 3)
+      setRecord(prev => [...prev.map(r => ({...r, isNew: false})), { red, cd, name, isNew: true }].sort((a, b) => a.cd - b.cd))
       clearInterval(cdInterval)
+      initFunc(false)
     }
   }, [cdStatus])
+
+  useEffect(() => {
+    if (cd === null || !cdStatus || cdStatus === -1) {
+      return
+    }
+    if (+cd > 0) {
+      const color = ((targetNum - cd) / targetNum) * 255
+      setRed(color)
+    } else if (cd === 0) {
+      clearInterval(cdInterval)
+      setTimeout(() => {
+        alert('TIMEOUT!!!')
+      }, 10)
+      initFunc(-1)
+    }
+  }, [cd, cdStatus])
+
   return (
     <div className="App" style={{ background: `rgba(255, ${255 - red}, ${255 - red})` }}>
       {
@@ -60,7 +76,7 @@ function App() {
       <h3>Your Name</h3>
       <input value={name} onChange={e => setName(e.target.value)} />
       <h3>Count Down Game</h3>
-      <h1 style={{ color: `rgb(${red}, 0, 0)` }}>{cd}</h1>
+      <h1>{cd}</h1>
       <div
         className="cd-button"
         onClick={() => setCdStatus(prev => prev === -1 ? true : !prev)}
@@ -68,11 +84,17 @@ function App() {
         {(!cdStatus || cdStatus === -1) ? 'Start' : 'Stop'}
       </div>
       <h3>Record</h3>
-      {
-        record.length ?
-          record.map((r, i) => <h3 key={i}>{i + 1}. {r.name || 'No Name'} - <span style={{ color: `rgba(${r.red}, 0, 0)` }}>{r.cd}</span></h3>) :
-          null
-      }
+      <div className="record">
+        {
+          record.length ?
+            record.map((r, i) => (
+              <h3 key={i}>
+                {i + 1}. {r.name || 'No Name'} - <span style={{ color: `rgba(${r.red}, 0, 0)` }}>{r.cd}</span> {r.isNew ? '(The Last)' : ''}
+              </h3>
+            )) :
+            null
+        }
+      </div>
     </div>
   );
 }
