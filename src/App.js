@@ -67,8 +67,8 @@ function App() {
     <div className="App" style={{ background: `rgba(255, ${255 - red}, ${255 - red})` }}>
       {
         performance && loadTime ?
-          <div>
-            Page Load Time: {loadTime}ms
+          <div className="load-time">
+            Page Load Time: {loadTime.toFixed(2)}ms
           </div>
           :
           null

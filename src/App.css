@@ -9,6 +9,13 @@ html, body, #root {
 .App {
   height: 100%;
   text-align: center;
+  overflow: auto;
+}
+
+.load-time {
+  position: fixed;
+  bottom: 0;
+  background-color: white;
 }
 
 h3 {
