@@ -3,14 +3,17 @@ import './App.css';
 
 const nEntris = performance && performance.getEntries('navigation')[0]
 
+
 function App() {
   const [loadTime, setLoadTime] = useState('')
   useEffect(() => {
-    setTimeout(() => {
-      console.log('load time', nEntris.loadEventEnd)
-      setLoadTime(nEntris.loadEventEnd)
-    })
-  }, [nEntris.loadEventEnd])
+    const checkTime = setInterval(() => {
+      if (nEntris.loadEventEnd) {
+        setLoadTime(nEntris.loadEventEnd)
+        clearInterval(checkTime)
+      }
+    }, 500)
+  }, [])
   return (
     <div className="App">
       <h1>Aiwen's Site!</h1>
