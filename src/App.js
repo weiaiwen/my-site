@@ -10,7 +10,7 @@ function App() {
       console.log('load time', nEntris.loadEventEnd)
       setLoadTime(nEntris.loadEventEnd)
     })
-  }, [])
+  }, [nEntris.loadEventEnd])
   return (
     <div className="App">
       <h1>Aiwen's Site!</h1>
