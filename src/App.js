@@ -7,6 +7,7 @@ function App() {
   const [loadTime, setLoadTime] = useState('')
   useEffect(() => {
     setTimeout(() => {
+      console.log('load time', nEntris.loadEventEnd)
       setLoadTime(nEntris.loadEventEnd)
     })
   }, [])
