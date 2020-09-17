@@ -16,7 +16,7 @@ function App() {
       {
         performance && loadTime ?
           <div>
-            Load Time: {loadTime / 1000}s
+            Load Time: {loadTime}ms
           </div>
           :
           null
