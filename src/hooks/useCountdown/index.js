@@ -41,8 +41,8 @@ const useCountdown = (triggerState, setTriggerState) => {
   }, [triggerState, setTriggerState])
 
   return {
-    leftTimeMs,
-    targetMs
+    leftTime: (leftTimeMs / 1000).toFixed(3),
+    target: (targetMs / 1000).toFixed(3)
   }
 }
 

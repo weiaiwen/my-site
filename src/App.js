@@ -7,9 +7,7 @@ import './App.css';
 function App() {
   const [triggerState, setTriggerState] = useState(0)
   const [name, setName] = useState('')
-  const { leftTimeMs, targetMs } = useCountdown(triggerState, setTriggerState)
-  const leftTime = (leftTimeMs / 1000).toFixed(3)
-  const target = (targetMs / 1000).toFixed(3)
+  const { leftTime, target } = useCountdown(triggerState, setTriggerState)
   const recordList = useRecordList(triggerState, name, leftTime, target)
 
   const onTrigger = () => {
