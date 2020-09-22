@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 const useRecordList = (triggerState, name, leftTime, color) => {
   const [recordList, setRecordList] = useState([])
-  const _triggerState = useRef(name)
+  const _triggerState = useRef(triggerState)
   
   useEffect(() => {
     if (triggerState === 2 && _triggerState.current !== triggerState && +leftTime !== 0) {
