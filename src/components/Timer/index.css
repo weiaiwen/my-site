@@ -1,4 +1,9 @@
-.unit {
-  margin-left: 3px;
+.txt {
+  margin: 0 3px;
   font-size: 20px;
+}
+
+.timer {
+  font-size: 40px;
+  margin: 20px 0;
 }

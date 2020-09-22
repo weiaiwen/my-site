@@ -1,7 +1,6 @@
 .trigger-button {
   font-weight: bold;
   display: inline-block;
-  margin-top: 15px;
   padding: 5px 15px;
   border: 5px solid black;
   cursor: pointer;

@@ -5,13 +5,11 @@ const Timer = props => {
     value
   } = props
   return (
-    <>
-      <h3>倒计时</h3>
-      <h1>
-        {value}
-        <span className="unit">秒</span>
-      </h1>
-    </>
+    <div className="timer">
+      <span className="txt">倒计时</span>
+      {value}
+      <span className="txt">秒</span>
+    </div>
   )
 }
 
