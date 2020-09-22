@@ -1,17 +1,24 @@
 
-import { useEffect, useState } from 'react';
-const useRecordList = (triggerState, name, leftTime) => {
+import { useEffect, useState, useRef } from 'react';
+const useRecordList = (triggerState, name, leftTime, target) => {
   const [recordList, setRecordList] = useState([])
+  const _triggerState = useRef(name)
+  
   useEffect(() => {
-    if (triggerState === 2) {
+    if (triggerState === 2 && _triggerState.current !== triggerState) {
       const newRecord = {
         name,
         leftTime,
-        isNew: true
+        isNew: true,
+        target
       }
-      setRecordList(prev => prev.concat([newRecord]).sort((a, b) => a.leftTime - b.leftTime))
+      setRecordList(prev => prev
+        .map(p => ({ ...p, isNew: false }))
+        .concat([newRecord])
+        .sort((a, b) => a.leftTime - b.leftTime))
     }
-  }, [triggerState, name, leftTime])
+    _triggerState.current = triggerState
+  }, [triggerState, name, leftTime, target])
   return recordList
 }
 
