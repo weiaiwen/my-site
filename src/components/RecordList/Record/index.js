@@ -15,7 +15,7 @@ const RecordList = props => {
   return (
     <div className="record">
       {`${index + 1}.\t${name || '无名氏'} - `}
-      <span style={{ background: color }}>{leftTime}</span>
+      <span style={{ background: color }}>{leftTime}秒</span>
       {isNew ? ' (The Last)' : ''}
     </div>
   )

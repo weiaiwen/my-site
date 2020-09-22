@@ -1,18 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 
 let raf
-let targetMs
-let startTime
 
 const useCountdown = (triggerState, setTriggerState) => {
   const [leftTimeMs, setLeftTimeMs] = useState(-1)
   const _triggerState = useRef(triggerState)
+  const targetMs = useRef(0)
+  const startTime = useRef(0)
 
   useEffect(() => {
     _triggerState.current = triggerState
     const rafFunc = () => {
-      const diff = Date.now() - startTime
-      const gap = targetMs - diff
+      const diff = Date.now() - startTime.current
+      const gap = targetMs.current - diff
       if (_triggerState.current !== 1) {
         cancelAnimationFrame(raf)
         return
@@ -28,11 +28,11 @@ const useCountdown = (triggerState, setTriggerState) => {
     }
     
     if (triggerState === 1) {
-      startTime = Date.now()
+      startTime.current = Date.now()
       raf = requestAnimationFrame(rafFunc)
     } else if (triggerState === 0) {
-      targetMs = parseInt(Math.random() * 2000 + 4000)
-      setLeftTimeMs(targetMs)
+      targetMs.current = parseInt(Math.random() * 2000 + 4000)
+      setLeftTimeMs(targetMs.current)
       if (raf) {
         cancelAnimationFrame(raf)
       }
@@ -42,7 +42,7 @@ const useCountdown = (triggerState, setTriggerState) => {
 
   return {
     leftTime: (leftTimeMs / 1000).toFixed(3),
-    target: (targetMs / 1000).toFixed(3)
+    target: (targetMs.current / 1000).toFixed(3)
   }
 }
 
