@@ -12,7 +12,7 @@ const Trigger = props => {
   return (
     <div
       className="trigger-button"
-      onTouchStart={() => onTrigger()}
+      onClick={() => onTrigger()}
     >
       {txtArr[triggerState]}
     </div>
