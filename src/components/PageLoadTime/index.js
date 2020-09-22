@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
+import './index.css'
 
 const nEntris = performance && performance.getEntries('navigation')[0]
 

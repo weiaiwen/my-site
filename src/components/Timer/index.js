@@ -6,7 +6,7 @@ const Timer = props => {
   return (
     <>
       <h3>Timer</h3>
-      <h1>{(value / 1000).toFixed(2)}</h1>
+      <h1>{value}</h1>
     </>
   )
 }

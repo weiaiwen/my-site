@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { Trigger, InputName, PageLoadTime, Timer } from './components'
-import { useCountdown } from './hooks'
+import { Trigger, InputName, PageLoadTime, Timer, RecordList } from './components'
+import { useCountdown, useRecordList } from './hooks'
 import './App.css';
+
 
 function App() {
   const [triggerState, setTriggerState] = useState(0)
-  const leftTime = useCountdown(triggerState, setTriggerState)
   const [name, setName] = useState('')
+  const leftTime = (useCountdown(triggerState, setTriggerState) / 1000).toFixed(3)
+  const recordList = useRecordList(triggerState, name, leftTime)
 
   const onTrigger = () => {
     setTriggerState(prev => {
@@ -25,6 +27,7 @@ function App() {
       <Timer value={leftTime} />
       <Trigger triggerState={triggerState} onTrigger={onTrigger} />
       <PageLoadTime />
+      <RecordList recordList={recordList} />
     </div>
   );
 }

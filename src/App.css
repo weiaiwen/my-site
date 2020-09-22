@@ -6,31 +6,12 @@ html, body, #root {
   height: 100%;
 }
 
-.App {
-  height: 100%;
-  text-align: center;
-  overflow: auto;
-}
-
-.load-time {
-  position: fixed;
-  bottom: 0;
-  background-color: white;
-}
-
 h3 {
   margin: 20px;
 }
 
-.trigger-button {
-  font-weight: bold;
-  display: inline-block;
-  margin-top: 15px;
-  padding: 5px 15px;
-  border: 5px solid black;
-}
-
-.record {
-  margin: 0 30px;
-  text-align: left;
+.App {
+  height: 100%;
+  text-align: center;
+  overflow: auto;
 }
