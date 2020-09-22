@@ -5,7 +5,7 @@ let targetMs
 let startTime
 
 const useCountdown = (triggerState, setTriggerState) => {
-  const [leftTimeMs, setLeftTimeMs] = useState(0)
+  const [leftTimeMs, setLeftTimeMs] = useState(-1)
   const _triggerState = useRef(triggerState)
 
   useEffect(() => {

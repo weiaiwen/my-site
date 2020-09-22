@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Trigger, InputName, PageLoadTime, Timer, RecordList } from './components'
 import { useCountdown, useRecordList } from './hooks'
 import './App.css';
@@ -11,6 +11,14 @@ function App() {
   const warningPercent = leftTime / target
   const color = `rgb(255, ${255 * warningPercent}, ${255 * warningPercent})`
   const recordList = useRecordList(triggerState, name, leftTime, color)
+
+  useEffect(() => {
+    if (+leftTime === 0) {
+      setTimeout(() => {
+        alert('太晚了！')
+      })
+    }
+  }, [leftTime])
 
   const onTrigger = () => {
     setTriggerState(prev => {
