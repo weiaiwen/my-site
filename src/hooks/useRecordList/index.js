@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from 'react';
-const useRecordList = (triggerState, name, leftTime, target) => {
+const useRecordList = (triggerState, name, leftTime, color) => {
   const [recordList, setRecordList] = useState([])
   const _triggerState = useRef(name)
   
@@ -10,7 +10,7 @@ const useRecordList = (triggerState, name, leftTime, target) => {
         name,
         leftTime,
         isNew: true,
-        target
+        color
       }
       setRecordList(prev => prev
         .map(p => ({ ...p, isNew: false }))
@@ -18,7 +18,7 @@ const useRecordList = (triggerState, name, leftTime, target) => {
         .sort((a, b) => a.leftTime - b.leftTime))
     }
     _triggerState.current = triggerState
-  }, [triggerState, name, leftTime, target])
+  }, [triggerState, name, leftTime, color])
   
   return recordList
 }

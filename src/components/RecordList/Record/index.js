@@ -10,11 +10,13 @@ const RecordList = props => {
     name,
     leftTime,
     isNew,
-    target
+    color,
   } = record
   return (
     <div className="record">
-      {`${index + 1}.\t${name || 'NO NAME'} - ${leftTime}${isNew ? ' (The Last)' : ''}`}
+      {`${index + 1}.\t${name || '无名氏'} - `}
+      <span style={{ background: color }}>{leftTime}</span>
+      {isNew ? ' (The Last)' : ''}
     </div>
   )
 }
