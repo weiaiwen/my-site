@@ -7,7 +7,7 @@ const InputName = props => {
   } = props
   return (
     <>
-      <h3>Your Name</h3>
+      <h3>你的名字</h3>
       <input value={name} onChange={e => onChange(e.target.value)} />
     </>
   )

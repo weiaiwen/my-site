@@ -7,7 +7,7 @@ const RecordList = props => {
   } = props
   return (
     <>
-    <h3>Record List</h3>
+    <h3>纪录</h3>
     {
       recordList.map((r, i) => (
         <Record index={i} record={r} key={`${i}-${Math.random()}`}/>

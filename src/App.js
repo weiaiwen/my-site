@@ -9,6 +9,7 @@ function App() {
   const [name, setName] = useState('')
   const { leftTime, target } = useCountdown(triggerState, setTriggerState)
   const recordList = useRecordList(triggerState, name, leftTime, target)
+  const warningPercent = leftTime / target
 
   const onTrigger = () => {
     setTriggerState(prev => {
@@ -22,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={{ background: `rgb(255, ${255 * warningPercent}, ${255 * warningPercent})` }}>
       <InputName value={name} onChange={setName} />
       <Timer value={leftTime} />
       <Trigger triggerState={triggerState} onTrigger={onTrigger} />

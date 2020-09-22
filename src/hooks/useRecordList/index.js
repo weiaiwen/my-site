@@ -5,7 +5,7 @@ const useRecordList = (triggerState, name, leftTime, target) => {
   const _triggerState = useRef(name)
   
   useEffect(() => {
-    if (triggerState === 2 && _triggerState.current !== triggerState) {
+    if (triggerState === 2 && _triggerState.current !== triggerState && +leftTime !== 0) {
       const newRecord = {
         name,
         leftTime,
@@ -19,6 +19,7 @@ const useRecordList = (triggerState, name, leftTime, target) => {
     }
     _triggerState.current = triggerState
   }, [triggerState, name, leftTime, target])
+  
   return recordList
 }
 

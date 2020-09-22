@@ -7,7 +7,7 @@ const Trigger = props => {
     onTrigger
   } = props
 
-  const txtArr = ['START', 'STOP', 'RESTART']
+  const txtArr = ['开始', '停止', '重新开始']
 
   return (
     <div

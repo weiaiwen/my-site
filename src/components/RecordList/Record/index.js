@@ -14,7 +14,7 @@ const RecordList = props => {
   } = record
   return (
     <div className="record">
-      {`${index + 1}.\t${name || 'NO NAME'} - ${leftTime} : ${target}${isNew ? ' (The Last)' : ''}`}
+      {`${index + 1}.\t${name || 'NO NAME'} - ${leftTime}${isNew ? ' (The Last)' : ''}`}
     </div>
   )
 }
