@@ -5,7 +5,7 @@ const RecordList = React.memo(props => {
   const {
     recordList
   } = props
-  console.log(recordList)
+  
   return (
     <>
     <h3>纪录</h3>
