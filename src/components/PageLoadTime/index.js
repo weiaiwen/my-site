@@ -22,7 +22,7 @@ const useLoadTime = () => {
 }
 
 
-const PageLoadTime = () => {
+const PageLoadTime = React.memo(() => {
   const loadTime = useLoadTime()
   if (performance && loadTime) {
     return (
@@ -32,6 +32,6 @@ const PageLoadTime = () => {
     )
   }
   return null
-}
+})
 
 export default PageLoadTime
