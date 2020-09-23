@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 
-const RecordList = props => {
+const RecordList = React.memo(props => {
   const {
     index,
     record
@@ -19,6 +19,6 @@ const RecordList = props => {
       {isNew ? ' (The Last)' : ''}
     </div>
   )
-}
+})
 
 export default RecordList

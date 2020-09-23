@@ -1,10 +1,11 @@
 import React from 'react'
 import Record from './Record'
 
-const RecordList = props => {
+const RecordList = React.memo(props => {
   const {
     recordList
   } = props
+  console.log(recordList)
   return (
     <>
     <h3>纪录</h3>
@@ -15,6 +16,6 @@ const RecordList = props => {
     }
     </>
   )
-}
+})
 
 export default RecordList

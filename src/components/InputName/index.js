@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputName = props => {
+const InputName = React.memo(props => {
   const {
     name,
     onChange
@@ -11,6 +11,6 @@ const InputName = props => {
       <input value={name} onChange={e => onChange(e.target.value)} />
     </>
   )
-}
+})
 
 export default InputName

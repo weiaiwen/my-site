@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css'
 
-const Trigger = props => {
+const Trigger = React.memo(props => {
   const {
     triggerState,
     onTrigger
@@ -17,6 +17,6 @@ const Trigger = props => {
       {txtArr[triggerState]}
     </div>
   )
-}
+})
 
 export default Trigger

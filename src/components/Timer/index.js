@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css'
-const Timer = props => {
+const Timer = React.memo(props => {
   const {
     value
   } = props
@@ -11,6 +11,6 @@ const Timer = props => {
       <span className="txt">秒</span>
     </div>
   )
-}
+})
 
 export default Timer
