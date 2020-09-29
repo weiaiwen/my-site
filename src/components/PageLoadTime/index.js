@@ -1,11 +1,8 @@
-
 import React from 'react';
-import { useLoadTime } from '../../hooks'
 import './index.css'
 
 
-const PageLoadTime = React.memo(() => {
-  const loadTime = useLoadTime()
+const PageLoadTime = React.memo(({ loadTime }) => {
   if (performance && loadTime) {
     return (
       <div className="load-time">

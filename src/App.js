@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Trigger, InputName, PageLoadTime, Timer, RecordList } from './components'
-import { useCountdown, useRecordList } from './hooks'
+import { useCountdown, useRecordList, useLoadTime } from './hooks'
 import './App.css';
 
 
@@ -11,6 +11,7 @@ function App() {
   const warningPercent = useMemo(() => leftTime / target, [leftTime, target]) 
   const color = useMemo(() => `rgb(255, ${255 * warningPercent}, ${255 * warningPercent})`, [warningPercent])
   const recordList = useRecordList(triggerState, name, leftTime, color)
+  const loadTime = useLoadTime()
   
   useEffect(() => {
     if (+leftTime === 0) {
@@ -36,7 +37,7 @@ function App() {
       <InputName value={name} onChange={setName} />
       <Timer value={leftTime} />
       <Trigger triggerState={triggerState} onTrigger={onTrigger} />
-      <PageLoadTime />
+      <PageLoadTime loadTime={loadTime} />
       <RecordList recordList={recordList} />
     </div>
   );
